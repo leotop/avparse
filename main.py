@@ -33,14 +33,18 @@ def get_cars(url):
 
         return cars
 
+
+def years(links):
+
+    d = {}
+    for key in links:
+        year = key.split('_')[2]
+        if year not in d:
+            d[year] = [key]
+        d[year] += [key]
+
+    return d
+
 url = 'https://www.avito.ru/ryazan/avtomobili/chevrolet/lacetti/hetchbek'
 cars = get_cars(url)
-
-d = {}
-for key in cars:
-    year = key.split('_')[2]
-    if year not in d:
-        d[year] = [key]
-    d[year] += [key]
-
-print len(d['2008'])
+print years(cars)
