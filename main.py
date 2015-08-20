@@ -11,7 +11,7 @@ def status_code(url):
     return req.status_code
 
 
-def pager(url):
+def paginator(url):
 
     pages = []
     for i in range(1, 10):
@@ -34,17 +34,19 @@ def get_cars(url):
         return cars
 
 
-def years(links):
+def cars_of_year(links):
 
-    d = {}
+    cars_data = {}
     for key in links:
         year = key.split('_')[2]
-        if year not in d:
-            d[year] = [key]
-        d[year] += [key]
+        if year not in cars_data:
+            cars_data[year] = [key]
+        cars_data[year] += [key]
 
-    return d
+    return cars_data
 
-url = 'https://www.avito.ru/ryazan/avtomobili/chevrolet/lacetti/hetchbek'
-cars = get_cars(url)
-print years(cars)
+def get_price(links):
+
+    for x in requests.get(links):
+        if 'itemprop=\"price\"' in x:
+            print x.strip('\n')
