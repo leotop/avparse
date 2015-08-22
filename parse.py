@@ -3,7 +3,10 @@
 
 import requests
 
+# юрл запроса
+url = 'https://www.avito.ru/ryazan/avtomobili/chevrolet/lacetti/hetchbek'
 
+# Создаем класс, инициализация экземпляра класса по url
 class AvitoParser(object):
 
     def __init__(self, url):
@@ -12,6 +15,7 @@ class AvitoParser(object):
 
 
     def paginator(self):
+        # Функция-пагинатор, возвращает список существующих страниц <=10
         pages = []
         for i in range(1, 10):
             current = ('%s?p=%s' % (self.url, i))
@@ -33,16 +37,17 @@ class AvitoParser(object):
         return cars
 
     def cars_of_year(self):
-        #Вернет словарь вида key(Год): value(Ссылка)
+        #Вернет словарь вида key(Год): value(Ссылка), зависит от функции get_cars()
         cars_data = {}
-        for key in self.get_cars():
-            year = key.split('_')[2]
-            if year not in cars_data:
-                cars_data[year] = [key]
-            cars_data[year] += [key]
+        for value in self.get_cars():
+            key = value.split('_')[2]
+            if key not in cars_data:
+                cars_data[key] = [value]
+            cars_data[key] += [value]
 
         return cars_data
 
 
-url = 'https://www.avito.ru/ryazan/avtomobili/chevrolet/lacetti/hetchbek'
+
 cars = AvitoParser(url)
+print cars.cars_of_year()['2009']
