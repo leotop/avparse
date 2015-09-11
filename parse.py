@@ -35,17 +35,14 @@ class AvitoParser(object):
     def cars_of_year(self):
         #Вернет словарь вида key(Год): value(Ссылка)
         cars_data = {}
-        for value in self.get_cars():
-            key = value.split('_')[2]
-            if key not in cars_data:
-                cars_data[key] = [value]
-            cars_data[key] += [value]
+        for key in self.get_cars():
+            year = key.split('_')[2]
+            if year not in cars_data:
+                cars_data[year] = [key]
+            cars_data[year] += [key]
 
         return cars_data
 
 
 url = 'https://www.avito.ru/ryazan/avtomobili/chevrolet/lacetti/hetchbek'
 cars = AvitoParser(url)
-
-for x in cars.cars_of_year()['2010']:
-    print x
