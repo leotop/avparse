@@ -2,6 +2,7 @@
 # coding: utf-8
 
 import requests
+import mailerdaemon
 
 
 class AvitoParser(object):
@@ -9,6 +10,7 @@ class AvitoParser(object):
     def __init__(self, url):
 
         self.url = url
+        self.total = len(self.get_cars()) #Кол-во найденных машин
 
 
     def paginator(self):
@@ -46,3 +48,6 @@ class AvitoParser(object):
 
 url = 'https://www.avito.ru/ryazan/avtomobili/chevrolet/lacetti/hetchbek'
 cars = AvitoParser(url)
+msg = ''
+
+mailerdaemon.mail(msg)
