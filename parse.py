@@ -74,7 +74,7 @@ class AvitoParser(object):
             if u'Пробег' in line:
                 return line.split('\"')[-2].split(';')[-1].strip()
 
-    def message_maker(self):
+    def result(self):
         """
 
         :return: словарь {ссылка на машину: [фото, цена, пробег, год, дата размещения]}
