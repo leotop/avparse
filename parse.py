@@ -93,7 +93,7 @@ def mail(message):
 
     smtp_server = 'smtp.yandex.ru'
     smtp_port = 465
-    smtp_pasword = 'P@ssw0rd'
+    smtp_pasword = '#пароль от почты'
 
     uid = 'alx9110@yandex.ru'
     sender = 'mailer-daemon'
